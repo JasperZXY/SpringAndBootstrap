@@ -1,6 +1,6 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-SpringAndBootstrap
+jsp/index.jsp
 </body>
 </html>
