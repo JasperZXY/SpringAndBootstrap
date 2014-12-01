@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+	<property resource="system.properties" />
+
+	<!-- Handle JUL -->
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logs.dir}/sab.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logs.dir}/sab.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<charset>UTF-8</charset> 
+			<pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE" />
+		<queueSize>102400</queueSize>  
+    	<discardingThreshold>0</discardingThreshold> 
+	</appender>
+
+	<logger name="java.sql" level="WARN" />
+	<logger name="com.mchange" level="WARN" />
+	<logger name="org.apache" level="WARN" />
+	<logger name="org.mybatis" level="INFO" />
+	<logger name="org.springframework" level="INFO" />
+	<!-- <logger name="" level="INFO">
+		<appender-ref ref="FILE_GIFT" />
+	</logger> -->
+
+	<root level="${logs.level}">
+		<appender-ref ref="ASYNC_FILE" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
+

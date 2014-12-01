@@ -1,6 +1,7 @@
-package com.jasper.sab.controller;
+package com.jasper.sab.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,9 +42,18 @@ public class LoginController {
 		System.out.println("login:" + uid + " " + password);
 		if (adminService.check(uid, password)) {
 			request.getSession().setAttribute(Const.LOGIN_UID, uid);
-			return "admin/index";
+			//重定向
+			return "redirect:/admin/index";
 		}
 		return "login/index";
+	}
+	
+	@RequestMapping("logout")
+	public String login(HttpServletRequest request) {
+	    HttpSession session = request.getSession();
+	    System.out.println("logout uid=" + session.getAttribute(Const.LOGIN_UID));
+	    session.removeAttribute(Const.LOGIN_UID);
+	    return "login/index";
 	}
 
 }

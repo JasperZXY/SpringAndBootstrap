@@ -1,15 +1,18 @@
-package com.jasper.sab.controller;
+package com.jasper.sab.web.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
+    private final static Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@RequestMapping("index")
 	public String index() {
-		System.out.println("AdminController  index");
+		logger.info("AdminController  index");
 		return "admin/index";
 	}
 

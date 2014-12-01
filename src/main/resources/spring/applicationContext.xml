@@ -6,8 +6,11 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd
     ">
 
-	<context:component-scan base-package="com.jasper.sab" >
-		<context:include-filter type="regex" expression="com.jasper.sab.service.*"/>
+	<context:component-scan base-package="com.jasper.sab.service" >
 	</context:component-scan>
 	<!-- <bean class="com.jasper.sab.service.AdminService"></bean> -->
+	
+	<!-- Enable handling of java.util.logging through SLF4J -->
+	<bean id="slf4JBridgeHandler" class="org.slf4j.bridge.SLF4JBridgeHandler" init-method="removeHandlersForRootLogger" />
+	<bean class="org.slf4j.bridge.SLF4JBridgeHandler" init-method="install" depends-on="slf4JBridgeHandler" />
 </beans>

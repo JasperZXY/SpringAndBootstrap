@@ -1,4 +1,4 @@
-package com.jasper.sab.web;
+package com.jasper.sab.web.filter;
 
 import java.io.IOException;
 
@@ -27,11 +27,11 @@ public class LoginFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse)servletResponse;
 		System.out.println("getRequestURL:" + request.getRequestURL());
 		System.out.println("getRequestURI:" + request.getRequestURI());
-		if (request.getRequestURI().startsWith("/mvc/loginout")) {
+		if (request.getRequestURI().startsWith("/loginout")) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else {
 			if (request.getSession().getAttribute(Const.LOGIN_UID) == null) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/mvc/loginout/index");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/loginout/index");
 				dispatcher.forward(request, response);
 			} else {
 				chain.doFilter(request, response);

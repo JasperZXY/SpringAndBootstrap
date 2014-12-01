@@ -1,4 +1,4 @@
-package com.jasper.sab.controller;
+package com.jasper.sab.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
