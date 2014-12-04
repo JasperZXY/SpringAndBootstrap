@@ -22,7 +22,7 @@
 		</rollingPolicy>
 		<encoder>
 			<charset>UTF-8</charset> 
-			<pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n</pattern>
+			<pattern>[test]%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n</pattern>
 		</encoder>
 	</appender>
 
