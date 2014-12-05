@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:p="http://www.springframework.org/schema/p" 
+xmlns:context="http://www.springframework.org/schema/context" 
+xmlns:util="http://www.springframework.org/schema/util"
+xmlns:task="http://www.springframework.org/schema/task"
+xmlns:mvc="http://www.springframework.org/schema/mvc" xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/task 
+	http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+	>
+
+
+	<!--spring扫描注解的配置，注解的实例一定要扫描出来，不然定时任务无法生效   -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.jasper.sab.task" />
+	
+	<!-- 方式一  -->
+	<!-- <task:annotation-driven executor="myExecutor" scheduler="myScheduler"/>
+	<task:executor id="myExecutor" pool-size="400"/>
+	<task:scheduler id="myScheduler" pool-size="10"/> -->
+	
+	<!-- 方式二  -->
+	<task:annotation-driven/>
+
+</beans>

@@ -37,8 +37,6 @@
 	<logger name="org.apache" level="WARN" />
 	<logger name="org.mybatis" level="INFO" />
 	<logger name="org.springframework" level="INFO" >
-		<appender-ref ref="ASYNC_FILE" />
-		<appender-ref ref="STDOUT" />
 	</logger>
 	<!-- <logger name="" level="INFO">
 		<appender-ref ref="FILE_GIFT" />

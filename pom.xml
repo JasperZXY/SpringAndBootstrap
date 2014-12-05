@@ -9,7 +9,9 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring_version>3.1.0.RELEASE</spring_version>
+		<c3p0_ver>0.9.1.2</c3p0_ver>
+		<cglib_ver>3.0</cglib_ver>
+		<spring_version>3.2.5.RELEASE</spring_version>
 		<jackson_version>1.9.12</jackson_version>
 		<commons_io_ver>2.4</commons_io_ver>
 		<commons_codec_ver>1.8</commons_codec_ver>
@@ -32,6 +34,28 @@
 			<artifactId>junit</artifactId>
 			<version>4.8.1</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring_version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0_ver}</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>${cglib_ver}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>asm</groupId>
+					<artifactId>asm</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- web -->
 		<dependency>
@@ -73,9 +97,6 @@
 			<artifactId>jul-to-slf4j</artifactId>
 			<version>${slf4j_ver}</version>
 		</dependency>
-		<!-- 添加struts支持 -->
-		<!-- <dependency> <groupId>org.apache.struts</groupId> <artifactId>struts2-convention-plugin</artifactId> 
-			<version>2.3.4</version> </dependency> -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
@@ -97,7 +118,7 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson_version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
@@ -109,8 +130,6 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>1.6.9</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring</artifactId> 
-			<version>${spring_version}</version> </dependency> -->
 		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
@@ -161,34 +180,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring_version}</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-test</artifactId> 
-			<version>3.1.0.RELEASE</version> <scope>test</scope> </dependency> -->
+		<!-- mybatis跟MySQL -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-hibernate3</artifactId>
-			<version>2.0.6</version>
-		</dependency>
-		<!-- hibernate -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate</artifactId>
-			<version>3.2.5.ga</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.transaction</groupId>
-					<artifactId>jta</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>javax.transaction</groupId>
-			<artifactId>jta</artifactId>
-			<version>1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-			<version>1.0</version>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -196,21 +192,11 @@
 			<version>5.1.13</version>
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.3.0.ga</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId>
-			<version>3.3.0.ga</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-resources-plugin</artifactId>
 			<version>2.4.3</version>
 		</dependency>
-		
+
 		<!-- Utils apache -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -252,7 +238,7 @@
 			<artifactId>commons-email</artifactId>
 			<version>${commons_email_ver}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.servicemix.bundles</groupId>
 			<artifactId>org.apache.servicemix.bundles.commons-collections</artifactId>
@@ -279,6 +265,11 @@
 			<artifactId>scala-library</artifactId>
 			<version>2.10.4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-client</artifactId>
+			<version>5.9.1</version>
+		</dependency>
 	</dependencies>
 
 
@@ -300,13 +291,21 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>
 				<configuration>
-					<!-- other configure is reusing setting in parent pom.xml -->
 					<warSourceDirectory>target/webapp</warSourceDirectory>
+				</configuration>
+			</plugin>
+			<!-- 解决报错：Maven multi module: error assembling WAR: webxml attribute is 
+				required -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>dev</id>

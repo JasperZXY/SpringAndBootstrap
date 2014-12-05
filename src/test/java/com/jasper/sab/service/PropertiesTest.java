@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Properties;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,8 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
  * 测试获取properties中的配置信息
  * @author Jasper
  */
-@ContextConfiguration(locations = { "classpath:applicationContext.xml" })
+@Ignore
+@ContextConfiguration(locations = { "classpath:appContext.xml" })
 public class PropertiesTest extends AbstractJUnit4SpringContextTests {
     private final static Logger LOGGER = LoggerFactory.getLogger(PropertiesTest.class);
     @Value("${project_name}")
@@ -41,12 +43,12 @@ public class PropertiesTest extends AbstractJUnit4SpringContextTests {
         LOGGER.info("projectName1:" + projectName1);
         LOGGER.info("dev1:" + dev1);
         LOGGER.info("projectName2:" + projectName2);
-        logger.info("dev2:" + dev2);
+        LOGGER.info("dev2:" + dev2);
     }
     
     public static void main(String[] args) {
         LOGGER.info("test");
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:appContext.xml");
         System.out.println(Arrays.asList(context.getBeanDefinitionNames()));
         Map<String, PropertyPlaceholderConfigurer> configurerMap = context.getBeansOfType(PropertyPlaceholderConfigurer.class);
         Properties properties1 = getProperties(configurerMap.values());
