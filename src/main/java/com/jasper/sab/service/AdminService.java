@@ -3,8 +3,6 @@ package com.jasper.sab.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +13,6 @@ public class AdminService {
     @Autowired
     private UserDao userDao;
     
-    @PostConstruct
-    public void init() {
-        System.out.println("====" + userDao);
-    }
 	private Map<String, String> admins;
 	
 	public AdminService() {

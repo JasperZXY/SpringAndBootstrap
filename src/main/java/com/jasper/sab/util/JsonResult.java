@@ -5,8 +5,8 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class JsonResult implements java.io.Serializable {
-    private static final long serialVersionUID = -861631496314969535L;
-    private String code;
+	private static final long serialVersionUID = -896988536994426785L;
+	private String code;
 	private Object data;
 	private String message;
 
@@ -65,6 +65,10 @@ public class JsonResult implements java.io.Serializable {
         r.setMessage(message);
         return r;
     }
+	
+	public static JsonResult buildNotLogin() {
+		return buildNotLogin("no login");
+	}
 
 	public static JsonResult buildSuccess(Object data) {
 		JsonResult r = new JsonResult();

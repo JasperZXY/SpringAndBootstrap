@@ -12,7 +12,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jasper.sab.util.BaseServletUtil;
 import com.jasper.sab.util.Const;
+import com.jasper.sab.util.JsonResult;
 
 public class LoginFilter implements Filter {
 
@@ -31,8 +33,13 @@ public class LoginFilter implements Filter {
 			chain.doFilter(servletRequest, servletResponse);
 		} else {
 			if (request.getSession().getAttribute(Const.LOGIN_UID) == null) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/loginout/index");
-				dispatcher.forward(request, response);
+				if (request.getParameter("callback") == null) {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/loginout/index");
+					dispatcher.forward(request, response);
+				} else {
+					BaseServletUtil.sendResponseJsonP(response, 
+							request.getParameter("callback"), JsonResult.buildNotLogin());
+				}
 			} else {
 				chain.doFilter(request, response);
 			}

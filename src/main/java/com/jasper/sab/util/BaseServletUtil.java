@@ -24,10 +24,10 @@ public class BaseServletUtil {
             ServletOutputStream stream = response.getOutputStream();
             String ret = mapper.writeValueAsString(result);
             String funcName = "callBackFunction";
-            if (StringUtils.isBlank(callback)) {
+            if (StringUtils.isNotBlank(callback)) {
             	funcName = callback;
 			}
-            stream.write((funcName+"(" + ret + ");").getBytes("UTF-8"));
+            stream.write((funcName+"(" + ret + ")").getBytes("UTF-8"));
             stream.close();
         } catch (IOException e) {
             e.printStackTrace();
