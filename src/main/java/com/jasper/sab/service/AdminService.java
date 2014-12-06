@@ -3,7 +3,10 @@ package com.jasper.sab.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.jasper.sab.dao.mapper.UserDao;
@@ -12,6 +15,13 @@ import com.jasper.sab.dao.mapper.UserDao;
 public class AdminService {
     @Autowired
     private UserDao userDao;
+    @Value("${logs_level}")
+    private String levelString;
+    
+    @PostConstruct
+    public void init() {
+    	System.out.println("===" + levelString);
+    }
     
 	private Map<String, String> admins;
 	

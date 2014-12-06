@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds">
 
-	<property resource="system.properties" />
+	<property resource="log.properties" />
 
 	<!-- Handle JUL -->
 	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
@@ -42,7 +42,7 @@
 		<appender-ref ref="FILE_GIFT" />
 	</logger> -->
 
-	<root level="${logs.level}">
+	<root level="${logs_level}">
 		<appender-ref ref="ASYNC_FILE" />
 		<appender-ref ref="STDOUT" />
 	</root>
