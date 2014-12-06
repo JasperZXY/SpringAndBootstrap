@@ -64,8 +64,17 @@
 			<version>2.4</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- <dependency> <groupId>javax.servlet.jsp</groupId> <artifactId>jsp-api</artifactId> <version>2.0</version> <scope>provided</scope> 
-			</dependency> -->
+		<!-- jstl -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
 		<!-- log4j，日志管理 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -289,6 +298,8 @@
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<version>1.1</version>
 				<configuration>
+					<!-- 解决请求乱码问题 -->
+					<uriEncoding>utf-8</uriEncoding>
 					<path>/</path>
 					<port>8000</port>
 				</configuration>

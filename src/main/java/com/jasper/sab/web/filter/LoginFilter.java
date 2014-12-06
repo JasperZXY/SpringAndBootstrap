@@ -16,19 +16,20 @@ import com.jasper.sab.util.BaseServletUtil;
 import com.jasper.sab.util.Const;
 import com.jasper.sab.util.JsonResult;
 
+/**
+ * 登录拦截
+ * @author Jasper
+ *
+ */
 public class LoginFilter implements Filter {
 
 	public void destroy() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest)servletRequest;
 		HttpServletResponse response = (HttpServletResponse)servletResponse;
-		System.out.println("getRequestURL:" + request.getRequestURL());
-		System.out.println("getRequestURI:" + request.getRequestURI());
 		if (request.getRequestURI().startsWith("/loginout")) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else {
@@ -46,9 +47,8 @@ public class LoginFilter implements Filter {
 		}
 	}
 
-	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-
+	public void init(FilterConfig config) throws ServletException {
+		System.out.println("LoginFilter init");
 	}
 
 }

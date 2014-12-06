@@ -23,18 +23,6 @@ public class LoginController {
 		return "login/index";
 	}
 	
-	@RequestMapping("login2")
-	public String login2(@RequestParam("uid") String uid, 
-			@RequestParam("password") String password,
-			HttpServletRequest request) {
-		System.out.println("login:" + uid + " " + password);
-		if (adminService.check(uid, password)) {
-			request.getSession().setAttribute(Const.LOGIN_UID, uid);
-			return "admin/index";
-		}
-		return "login/index";
-	}
-	
 	@RequestMapping("login")
 	public String login(@RequestParam("uid") String uid, 
 			@RequestParam("password") String password,

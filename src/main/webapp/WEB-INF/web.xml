@@ -1,4 +1,9 @@
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?> 
+<web-app version="2.5" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"> 
 
 	<display-name>SpringAndBootstrap</display-name>
 	<context-param>
@@ -8,8 +13,26 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+
 	<!-- 过滤器 -->
+	<!-- spring MVC 编码设置 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<filter>
 		<display-name>LoginFilter</display-name>
 		<filter-name>LoginFilter</filter-name>
@@ -19,7 +42,7 @@
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/*</url-pattern>  <!-- 要过滤的url连接 -->
 	</filter-mapping>
-	
+
 	<!-- 添加spring3控制器及映射规则 -->
 	<servlet>
 		<servlet-name>spring3mvc</servlet-name>
