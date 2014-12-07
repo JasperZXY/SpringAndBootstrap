@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.jasper.sab.domain.User;
 
-//@Ignore
+@Ignore
 @ContextConfiguration(locations = { "classpath:appContext.xml" })
 public class UserMapperTest extends AbstractJUnit4SpringContextTests {
     @Autowired

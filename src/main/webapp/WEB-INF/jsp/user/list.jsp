@@ -37,8 +37,8 @@ jQuery(function() {
 
 	<div class="col-md-3">
 		<jsp:include page="/menu.jsp" flush="true">
-			<jsp:param name="item" value="user-list" />
 			<jsp:param name="group" value="user-manager" />
+			<jsp:param name="item" value="user-list" />
 		</jsp:include>
 	</div>
 

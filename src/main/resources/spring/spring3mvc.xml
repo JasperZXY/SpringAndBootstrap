@@ -17,5 +17,7 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
+    <!-- 静态资源 -->
     <mvc:resources mapping="/js/**" location="/js/" />
+    <mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
 </beans>

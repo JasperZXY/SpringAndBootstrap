@@ -57,6 +57,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- 注解 -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.2</version>
+		</dependency>
 		<!-- web -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -106,28 +112,12 @@
 			<artifactId>jul-to-slf4j</artifactId>
 			<version>${slf4j_ver}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-core</artifactId>
-			<version>2.3.16</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-codebehind-plugin</artifactId>
-			<version>2.0.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-spring-plugin</artifactId>
-			<version>2.0.9</version>
-		</dependency>
 		<!-- jackson -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson_version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
@@ -280,7 +270,6 @@
 			<version>5.9.1</version>
 		</dependency>
 	</dependencies>
-
 
 	<build>
 		<!-- 让profiles配置的properties能自动替换xml文件中的${} -->

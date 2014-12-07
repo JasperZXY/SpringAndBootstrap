@@ -43,16 +43,17 @@ jQuery(function() {
 			<div class="panel-heading" role="tab" id="headingTwo">
 				<h4 class="panel-title">
 					<a class="collapsed" data-toggle="collapse"
-						data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-						aria-controls="collapseTwo"> 系统管理 </a>
+						data-parent="#accordion" href="#test" aria-expanded="false"
+						aria-controls="collapseTwo">测试 </a>
 				</h4>
 			</div>
-			<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+			<div id="test" class="panel-collapse collapse" role="tabpanel"
 				aria-labelledby="headingTwo">
 				<div class="panel-body">
 					<ul class="nav nav-pills nav-stacked" role="tablist">
-						<li id="user-add" role="presentation"><a href="/user/addUI">添加用户</a></li>
+						<li id="admin-test-page" role="presentation"><a href="/admin/testPage?topage=1">测试分页</a></li>
 						<li id="user-list" role="presentation"><a href="/user/listAll">所有用户</a></li>
+						<li id="user-add" role="presentation"><a href="/user/addUI">添加用户</a></li>
 					</ul>
 				</div>
 			</div>
@@ -63,7 +64,7 @@ jQuery(function() {
 					<a class="collapsed" data-toggle="collapse"
 						data-parent="#accordion" href="#collapseThree"
 						aria-expanded="false" aria-controls="collapseThree">
-						系统管理 </a>
+						测试 </a>
 				</h4>
 			</div>
 			<div id="collapseThree" class="panel-collapse collapse"
