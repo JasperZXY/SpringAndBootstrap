@@ -33,6 +33,19 @@ public class BaseServletUtil {
             e.printStackTrace();
         }
     }
+	 
+	 public static void sendResponseJson(ServletResponse response, JsonResult result) {
+	     response.setContentType("application/javascript");
+	     response.setCharacterEncoding("UTF-8");
+	     try {
+	         ServletOutputStream stream = response.getOutputStream();
+	         String ret = mapper.writeValueAsString(result);
+	         stream.write(ret.getBytes("UTF-8"));
+	         stream.close();
+	     } catch (IOException e) {
+	         e.printStackTrace();
+	     }
+	 }
 	    
     public static String getRemortIP(HttpServletRequest request) {
         String ips = "";

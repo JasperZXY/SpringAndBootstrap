@@ -8,7 +8,7 @@
 <script type="text/javascript" src="/js/common.js"></script>
 <script type="text/javascript">
 jQuery(function() {
-	$('#submit').on('click', function(e) {
+	$('#submit_jsonp').on('click', function(e) {
 		if ($('#password2').val() == '' || $('#password').val() == '') {
 			alert('密码不能为空');
 			return;
@@ -18,23 +18,24 @@ jQuery(function() {
 			return;
 		}
 		var $data = $("#form-user").serialize();
-		ajaxJsonp("/user/add", $data, function(ret) {
+		ajaxJsonp("/user/addForJsonp", $data, function(ret) {
 			alert('成功：id=' + ret);
 		});
-		/* $.ajax("/user/add", {
-			data: $data,
-			dataType: "jsonp",
-			beforeSend: function() {
-				$("#add-appawardinfo-btn").before('<img class="loading" src="http://s1.yy.com/common/images/loading_32.gif" alt="loading" />')
-			}
-		}).done(function(ret) {
-			//alert(JSON.stringify(ret));
-			if (ret.code == 0) {
-				alert('success:' + JSON.stringify(ret.data));
-			} else if (ret.code == 2){
-				alert('no login:' + ret.message);
-			}
-		}) */
+		e.preventDefault();
+	})
+	$('#submit_json').on('click', function(e) {
+		if ($('#password2').val() == '' || $('#password').val() == '') {
+			alert('密码不能为空');
+			return;
+		}
+		if ($('#password2').val() != $('#password').val()) {
+			alert('两次密码不一致');
+			return;
+		}
+		var $data = $("#form-user").serialize();
+		ajaxJson("/user/addForJson", $data, true, function(ret) {
+			alert('成功：id=' + ret);
+		});
 		e.preventDefault();
 	})
 });
@@ -82,7 +83,8 @@ jQuery(function() {
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button id="submit" type="button" class="btn btn-info">确定</button>
+					<button id="submit_json" type="button" class="btn btn-info">确定(json)</button>
+					<button id="submit_jsonp" type="button" class="btn btn-info">确定(jsonp)</button>
 				</div>
 			</div>
 		</form>

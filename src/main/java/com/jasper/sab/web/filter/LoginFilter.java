@@ -34,12 +34,14 @@ public class LoginFilter implements Filter {
 			chain.doFilter(servletRequest, servletResponse);
 		} else {
 			if (request.getSession().getAttribute(Const.LOGIN_UID) == null) {
-				if (request.getParameter("callback") == null) {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/loginout/index");
-					dispatcher.forward(request, response);
+			    if (request.getRequestURI().startsWith("/json/")) {
+					BaseServletUtil.sendResponseJson(response, JsonResult.buildNotLogin());
+				} else if (request.getRequestURI().startsWith("/jsonp/")) { 
+				    BaseServletUtil.sendResponseJsonP(response, 
+                            request.getParameter("callback"), JsonResult.buildNotLogin());
 				} else {
-					BaseServletUtil.sendResponseJsonP(response, 
-							request.getParameter("callback"), JsonResult.buildNotLogin());
+				    RequestDispatcher dispatcher = request.getRequestDispatcher("/loginout/index");
+				    dispatcher.forward(request, response);
 				}
 			} else {
 				chain.doFilter(request, response);

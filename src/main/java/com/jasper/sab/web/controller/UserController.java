@@ -33,8 +33,8 @@ public class UserController {
 		return view;
 	}
 
-	@RequestMapping("add")
-	public void add(@RequestParam("name") String name, 
+	@RequestMapping("addForJsonp")
+	public void addForJsonp(@RequestParam("name") String name, 
 			@RequestParam("password") String password,
 			@RequestParam("age") int age,
 			@RequestParam("callback") String callback,
@@ -46,6 +46,20 @@ public class UserController {
 		user.setAge(age);
 		userDao.insert(user);
 		BaseServletUtil.sendResponseJsonP(response, callback, JsonResult.buildSuccess(user.getId()));
+	}
+	
+	@RequestMapping("addForJson")
+	public void addForJson(@RequestParam("name") String name, 
+	        @RequestParam("password") String password,
+	        @RequestParam("age") int age,
+	        HttpServletResponse response) {
+	    logger.info("UserController  add");
+	    User user = new User();
+	    user.setName(name);
+	    user.setPassword(password);
+	    user.setAge(age);
+	    userDao.insert(user);
+	    BaseServletUtil.sendResponseJson(response, JsonResult.buildSuccess(user.getId()));
 	}
 	
 	@RequestMapping("addUI")

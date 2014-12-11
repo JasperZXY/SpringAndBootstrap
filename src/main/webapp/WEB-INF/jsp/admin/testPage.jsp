@@ -42,7 +42,7 @@ function topage(page) {
 				</c:forEach>
 			</tbody>
 		</table>
-		<%@ include file="/fenye.jsp" %>
+		<%@ include file="/paging.jsp" %>
 	</div>
 
 </body>
