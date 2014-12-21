@@ -7,8 +7,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringAndBootstrap Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mockito_ver>1.9.5</mockito_ver>
 		<c3p0_ver>0.9.1.2</c3p0_ver>
 		<cglib_ver>3.0</cglib_ver>
 		<spring_version>3.2.5.RELEASE</spring_version>
@@ -27,6 +29,7 @@
 		<slf4j_ver>1.7.5</slf4j_ver>
 		<logback_ver>1.0.13</logback_ver>
 	</properties>
+	
 	<dependencies>
 		<!-- junit，测试 -->
 		<dependency>
@@ -41,6 +44,13 @@
 			<version>${spring_version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito_ver}</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
