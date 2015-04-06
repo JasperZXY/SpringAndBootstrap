@@ -11,7 +11,9 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 		<param-value>classpath:spring/appContext.xml</param-value>
 	</context-param>
 	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<!-- 用自定义的监听器 -->
+		<listener-class>com.jasper.sab.web.listener.WebInitListener</listener-class>
+<!-- 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
 	</listener>
 
 	<!-- 过滤器 -->
