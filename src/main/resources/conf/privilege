@@ -1,0 +1,9 @@
+#权限
+#格式：模块编码#功能编码#功能名称
+
+user#view#查看
+user#add#添加
+user#update#更改
+user#delete#删除
+
+test#page#测试分页
