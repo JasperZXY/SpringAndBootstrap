@@ -30,7 +30,7 @@ public class LoginFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest)servletRequest;
 		HttpServletResponse response = (HttpServletResponse)servletResponse;
-		if (request.getRequestURI().startsWith("/loginout")) {
+		if (request.getRequestURI().startsWith("/loginout") || request.getRequestURI().startsWith("/test/")) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else {
 			if (request.getSession().getAttribute(Const.LOGIN_UID) == null) {

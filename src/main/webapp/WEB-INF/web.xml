@@ -16,12 +16,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 <!-- 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
 	</listener>
 
+	<!-- 下面所有的filter跟servlet都要开启servlet3的异步支持 async-supported -->
 	<!-- 过滤器 -->
 	<!-- spring MVC 编码设置 -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
-		</filter-class>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<async-supported>true</async-supported>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
@@ -39,6 +40,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 		<display-name>LoginFilter</display-name>
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>com.jasper.sab.web.filter.LoginFilter</filter-class>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
@@ -53,6 +55,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring/spring3mvc.xml</param-value>
 		</init-param>
+		<async-supported>true</async-supported>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
