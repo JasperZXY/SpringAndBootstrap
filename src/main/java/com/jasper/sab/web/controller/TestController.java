@@ -1,7 +1,6 @@
 package com.jasper.sab.web.controller;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.AsyncContext;
@@ -13,11 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.jasper.sab.service.AdminService;
+import com.jasper.sab.util.SpringContextHolder;
 
 @Controller
 @RequestMapping("test")
@@ -35,16 +38,33 @@ public class TestController {
 	@Value("#{settings.logs_level}")
 	private String logDir;
 	
+	@Autowired
+	private AdminService adminService;
+	
 	@PostConstruct
 	public void init() {
 		System.out.println("=============" + str + "==========");
 		System.out.println("=============" + logDir + "==========");
 	}
 	
+	@RequestMapping("waitLongTime")
+    @ResponseBody
+	public String waitLongTime() {
+	    System.out.println("waitLongTime. this:" + this + " adminService:" + adminService);
+	    try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+	    System.out.println("waitLongTime return");
+        return "success";
+	}
+	
 	@RequestMapping("index")
 	@ResponseBody
 	public String index() {
-		System.out.println("TestController  index");
+		System.out.println("TestController  index:" + this);
+		System.out.println("TestController  privilegeService:" + SpringContextHolder.getBean("privilegeService"));
 		return "success";
 	}
 	
@@ -56,7 +76,7 @@ public class TestController {
 	
 	@RequestMapping("simpleMethod")
 	public void simpleMethod(HttpServletRequest request, HttpServletResponse response) {
-	    logger.info("simpleMethod");
+	    logger.info("simpleMethod:" + this);
 	    String result = doSomething();
 	    sendResponse(response, result);
 	}
